@@ -87,7 +87,7 @@ export const MAP_LEGS = [
   { uid: 'L5', day: 'D6', from: 'burjin', to: 'ghost', km: 217, hours: '约3h16m', note: 'G217 南下 · 国庆前一天错峰', color: 'route' },
   {
     uid: 'L6', day: 'D7', from: 'ghost', to: 'sailimu', km: 577, hours: '约6h30m',
-    note: 'G217 + 连霍高速西行 · 全天最长 · 精河服务区午餐 · 国庆首日 7 点前出发', color: 'route',
+    note: 'G217 + 连霍高速西行 · 全天最长 · 精河服务区午餐 · 国庆首日 08:15 前出发', color: 'route',
     via: [[84.890, 45.580], [84.900, 44.420]]
   },
   {

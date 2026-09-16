@@ -108,6 +108,11 @@ tailwind.config = {
         </a>
       </div>
       <div id="heroStats" class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:max-w-3xl"></div>
+      <div class="mt-6 flex max-w-3xl flex-wrap items-center gap-x-3 gap-y-2 rounded-2xl border border-white/20 bg-white/10 px-5 py-4 text-xs leading-relaxed text-white/85 backdrop-blur">
+        <span class="inline-flex shrink-0 items-center gap-1.5 font-black text-birch"><i class="ri-alarm-line text-base"></i> 作息铁律</span>
+        <span>默认 <b class="text-white">8:00 起床</b>、9:00 前后出门。全程只有 3 个早晨为景色早起：禾木晨雾（D3 6:20）、喀纳斯晨雾+首班区间车（D4 7:00）、赛湖日出（D8 7:00）；另加国庆避堵的 D7 早半小时（7:30）与返程航班 D9（6:30）。</span>
+        <a href="#itinerary" class="shrink-0 font-bold text-birch underline decoration-birch/40 underline-offset-4 transition hover:text-white">看每天几点起 →</a>
+      </div>
     </div>
   </div>
   <div id="heroDots" class="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 gap-2"></div>
@@ -235,6 +240,7 @@ tailwind.config = {
         </button>
       </div>
     </div>
+    <div id="wakeOverview" class="mb-6"></div>
     <div id="days" class="space-y-4"></div>
   </div>
 </section>
