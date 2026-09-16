@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>喀纳斯金秋 · 一家四口北疆 10 日完整攻略（阿禾公路 + 喀纳斯 + 赛里木湖 + 大巴扎）</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink: '#1c1917',
+        amber: { 550: '#d97706' },
+        birch: '#c8a04a',
+        pine: '#2f5d50',
+        sky2: '#3b7ea1'
+      },
+      fontFamily: {
+        sans: ['"PingFang SC"', '"Microsoft YaHei"', 'system-ui', 'sans-serif']
+      }
+    }
+  }
+}
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background-color: #faf7f2; }
+  .fade-up { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .fade-up.in { opacity: 1; transform: none; }
+  .card-hover { transition: transform .3s ease, box-shadow .3s ease; }
+  .card-hover:hover { transform: translateY(-6px); box-shadow: 0 18px 40px -16px rgba(28,25,23,.35); }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .day-line::before {
+    content: ''; position: absolute; left: 19px; top: 44px; bottom: -28px; width: 2px;
+    background: linear-gradient(to bottom, #d6c9a8, rgba(214,201,168,.15));
+  }
+  .day-line:last-child::before { display: none; }
+  .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .amap-pin { cursor: pointer; transition: transform .18s ease; }
+  .amap-pin:hover { transform: translateY(-3px) scale(1.06); }
+  .amap-info-content { padding: 0 !important; border-radius: 14px; box-shadow: 0 12px 32px -10px rgba(28,25,23,.4); }
+  .amap-info-close { right: 10px !important; top: 10px !important; color: #a8a29e; }
+  .amap-logo, .amap-copyright { opacity: .55; }
+</style>
+</head>
+<body class="font-sans text-ink antialiased">
+
+<header id="nav" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+  <div class="mx-auto max-w-[1600px] px-5 lg:px-10">
+    <div class="flex h-16 items-center justify-between">
+      <a href="#top" class="flex items-center gap-2 font-bold tracking-tight">
+        <span class="grid h-9 w-9 place-items-center rounded-xl bg-birch text-white shadow-lg"><i class="ri-mountain-line text-lg"></i></span>
+        <span id="brand" class="text-white drop-shadow">喀纳斯金秋计划</span>
+      </a>
+      <nav id="navlinks" class="hidden items-center gap-1 lg:flex text-sm font-medium"></nav>
+      <button id="menuBtn" class="grid h-10 w-10 place-items-center rounded-lg bg-white/15 text-white backdrop-blur lg:hidden">
+        <i class="ri-menu-line text-xl"></i>
+      </button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="hidden border-t border-black/5 bg-white/95 backdrop-blur lg:hidden"></div>
+</header>
+
+<section id="top" class="relative min-h-[92vh] overflow-hidden">
+  <div id="heroSlides" class="absolute inset-0"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/70"></div>
+  <div class="relative mx-auto flex min-h-[92vh] max-w-[1600px] flex-col justify-center px-5 pt-24 pb-16 lg:px-10">
+    <div class="max-w-4xl">
+      <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-semibold text-white backdrop-blur">
+        <i class="ri-leaf-line"></i> 2026.09.24 — 10.03 · 8 个整天 · 一家四口（4岁 + 8岁）
+      </div>
+      <h1 class="text-4xl font-black leading-[1.15] text-white sm:text-5xl lg:text-6xl">
+        白桦金黄，牧歌未歇<br>
+        <span class="text-birch">阿禾公路 · 喀纳斯 · 禾木 · 赛里木湖</span><br>
+        北疆亲子慢游全攻略
+      </h1>
+      <p class="mt-6 max-w-2xl text-base leading-relaxed text-white/85 lg:text-lg">
+        为你的航班时刻量身定制：深圳 09-24 17:40 起飞、当晚落地乌鲁木齐直宿机场酒店，次日一早取车满状态北上；
+        10-03 09:40 起飞返深，下午到家。核心亮点是 2025 年新通车的 G681 阿禾公路：209 公里串起草原、石林与达坂，
+        公路即景点；9/24 晚落地多赚一个整天，把"大西洋最后一滴眼泪"赛里木湖也补了回来：10/1 环湖看日落、10/2 清晨
+        看完日出再东归，最后用大巴扎歌舞宴收官。全程按低龄儿童体力设计，含门票、区间车、住宿分布与国庆错峰时刻表。
+      </p>
+      <a href="#prep" class="group mt-7 flex max-w-2xl items-center gap-4 rounded-2xl border border-red-400/40 bg-red-500/15 px-5 py-4 backdrop-blur transition hover:border-red-400/70 hover:bg-red-500/25">
+        <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-red-500 text-white shadow-lg shadow-red-900/40">
+          <i class="ri-alarm-warning-line text-xl"></i>
+        </span>
+        <span class="min-w-0 flex-1">
+          <span class="block font-black text-white">出发前必办 · 这几件事晚一天就抢不到</span>
+          <span class="mt-0.5 block text-xs leading-relaxed text-white/75">禾木 / 贾登峪住宿已锁定 · 还差 9/29 布尔津、9/30 乌尔禾、10/1 赛湖、10/2 乌市 · 赛湖自驾预约设提醒</span>
+        </span>
+        <i class="ri-arrow-right-line shrink-0 text-xl text-red-300 transition group-hover:translate-x-1"></i>
+      </a>
+      <div class="mt-6 flex flex-wrap items-center gap-3">
+        <a href="#prep" class="group inline-flex items-center gap-2 rounded-xl bg-red-500 px-6 py-3.5 font-bold text-white shadow-xl shadow-black/25 transition hover:bg-red-600">
+          <i class="ri-alarm-warning-line"></i> 出发前必办
+        </a>
+        <a href="#itinerary" class="group inline-flex items-center gap-2 rounded-xl bg-birch px-6 py-3.5 font-bold text-white shadow-xl shadow-black/25 transition hover:bg-amber-550">
+          查看逐日行程 <i class="ri-arrow-right-line transition group-hover:translate-x-1"></i>
+        </a>
+        <a href="#map" class="inline-flex items-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 py-3.5 font-bold text-white backdrop-blur transition hover:bg-white/20">
+          <i class="ri-map-2-line"></i> 行程地图
+        </a>
+        <a href="#budget" class="inline-flex items-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 py-3.5 font-bold text-white backdrop-blur transition hover:bg-white/20">
+          <i class="ri-wallet-3-line"></i> 预算与清单
+        </a>
+      </div>
+      <div id="heroStats" class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:max-w-3xl"></div>
+    </div>
+  </div>
+  <div id="heroDots" class="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 gap-2"></div>
+</section>
+
+<section id="prep" class="relative scroll-mt-20 overflow-hidden border-y border-black/5 bg-ink text-white">
+  <div class="pointer-events-none absolute -right-28 -top-28 h-80 w-80 rounded-full bg-red-500/10 blur-3xl"></div>
+  <div class="pointer-events-none absolute -bottom-28 -left-28 h-80 w-80 rounded-full bg-amber-400/10 blur-3xl"></div>
+  <div class="relative mx-auto max-w-[1600px] px-5 py-16 lg:px-10 lg:py-20">
+    <div class="mb-9 flex flex-wrap items-end justify-between gap-6">
+      <div>
+        <p class="flex items-center gap-2 text-xs font-bold uppercase tracking-[.2em] text-red-400">
+          <i class="ri-alarm-warning-line"></i> Must Do Before Departure
+        </p>
+        <h2 class="mt-2 text-2xl font-black lg:text-3xl">出发前必办清单 · 晚一天就抢不到</h2>
+        <p class="mt-2 max-w-3xl text-sm leading-relaxed text-white/60">
+          按四批时间窗口整理：<span class="font-semibold text-red-300">现在就办</span> → 出发前 1 周 → 出发前 1-2 天 → 落地途中。
+          其中赛湖自驾预约是"卡点项"：开放时间在你出发途中，必须提前设好提醒。勾选进度自动保存在本地。
+        </p>
+      </div>
+      <div id="prepCountdown"></div>
+    </div>
+
+    <div class="mb-6 flex flex-wrap items-center gap-4 rounded-2xl border border-white/10 bg-white/5 px-5 py-4">
+      <div class="flex items-center gap-2">
+        <i class="ri-list-check-2 text-xl text-amber-400"></i>
+        <span class="font-bold">必办进度</span>
+      </div>
+      <div class="h-2.5 min-w-[180px] flex-1 overflow-hidden rounded-full bg-white/10">
+        <div id="prepTotalBar" class="h-full w-0 rounded-full bg-gradient-to-r from-red-500 via-amber-400 to-lime-400 transition-all duration-500"></div>
+      </div>
+      <span id="prepTotalCount" class="kbd text-sm font-black text-amber-300">0/20</span>
+      <button id="prepReset" class="rounded-lg border border-white/20 px-3 py-1.5 text-xs font-semibold text-white/60 transition hover:border-red-400 hover:text-red-300">重置</button>
+    </div>
+
+    <div id="prepGrid" class="grid gap-5 lg:grid-cols-2 xl:grid-cols-4"></div>
+  </div>
+</section>
+
+<section id="map" class="scroll-mt-20 border-y border-black/5 bg-white">
+  <div class="mx-auto max-w-[1600px] px-5 py-16 lg:px-10 lg:py-20">
+    <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-[.2em] text-birch">Interactive Map</p>
+        <h2 class="mt-2 text-2xl font-black lg:text-3xl">行程地图 · 点击站点查看详情</h2>
+        <p class="mt-2 text-sm text-stone-500">底图为高德地图，公路线按真实驾车导航路径绘制（阿禾公路段经途经点强制走 G681），路径已离线固化，打开即现、无网络请求；分段里程以导航实测为准。</p>
+      </div>
+      <div id="mapLegend" class="flex flex-wrap items-center gap-x-4 gap-y-2"></div>
+    </div>
+
+    <div class="grid gap-5 lg:grid-cols-[1fr_320px]">
+      <div class="relative overflow-hidden rounded-2xl border border-black/10 shadow-sm">
+        <div id="mapCanvas" class="h-[420px] w-full lg:h-[560px]"></div>
+        <button id="mapReset"
+                class="absolute right-3 top-3 z-[500] inline-flex items-center gap-1.5 rounded-lg bg-white/95 px-3 py-2 text-xs font-bold text-stone-700 shadow-lg backdrop-blur transition hover:text-birch">
+          <i class="ri-focus-3-line"></i> 全览
+        </button>
+        <div class="pointer-events-none absolute bottom-3 left-3 z-[500] rounded-lg bg-white/90 px-3 py-1.5 text-[11px] font-semibold text-stone-500 backdrop-blur">
+          <i class="ri-cursor-line"></i> 点击地图后可滚轮缩放
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <div class="rounded-2xl border border-black/5 bg-stone-50 p-4">
+          <h3 class="mb-3 flex items-center gap-2 text-sm font-black text-stone-700">
+            <i class="ri-map-pin-line text-birch"></i> 行程站点（可点击定位）
+          </h3>
+          <div id="mapStopList" class="space-y-1"></div>
+        </div>
+        <div class="rounded-2xl border border-birch/30 bg-birch/5 p-4">
+          <div class="flex items-baseline justify-between">
+            <span class="text-sm font-bold text-stone-700">驾车总里程</span>
+            <span id="legTotal" class="kbd text-xl font-black text-birch">—</span>
+          </div>
+          <p class="mt-1.5 text-[11px] leading-relaxed text-stone-500">
+            不含景区内区间车。东进西出大环线：S21 直穿沙漠北上，经阿禾公路进山，喀纳斯两晚（宿贾登峪）后南下，魔鬼城日落
+            后西进赛里木湖环湖，看罢日出再东归乌鲁木齐大巴扎收官，全程不走回头路。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6">
+      <h3 class="mb-4 flex items-center gap-2 text-sm font-black text-stone-700">
+        <i class="ri-route-line text-birch"></i> 分段车程明细
+      </h3>
+      <div id="legTable" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4"></div>
+    </div>
+  </div>
+</section>
+
+<section class="border-y border-black/5 bg-white">
+  <div class="mx-auto max-w-[1600px] px-5 py-14 lg:px-10">
+    <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-[.2em] text-birch">Route Overview</p>
+        <h2 class="mt-2 text-2xl font-black lg:text-3xl">大环线一眼看懂</h2>
+      </div>
+      <p class="max-w-xl text-sm leading-relaxed text-stone-500">
+        东进西出大环线：乌鲁木齐 →（S21 直穿沙漠 · 福海午餐）→ 阿勒泰 → 阿禾公路 → 禾木 → 喀纳斯（2晚）→ 布尔津 →
+        魔鬼城 → 赛里木湖（环湖 + 日出）→ 乌鲁木齐大巴扎收官。9/24 晚落地多赚一个整天，赛里木湖正式回归：G681 阿禾公路
+        + 赛湖环湖，两条景观公路全都拿下。
+      </p>
+    </div>
+    <div id="routeMap" class="no-scrollbar -mx-5 flex gap-3 overflow-x-auto px-5 pb-3 lg:mx-0 lg:px-0"></div>
+    <div id="routeBars" class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"></div>
+  </div>
+</section>
+
+<section id="itinerary" class="scroll-mt-20">
+  <div class="mx-auto max-w-[1600px] px-5 py-16 lg:px-10 lg:py-20">
+    <div class="mb-10 flex flex-wrap items-end justify-between gap-5">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-[.2em] text-birch">Day by Day</p>
+        <h2 class="mt-2 text-2xl font-black lg:text-3xl">逐日行程 · 10 天 9 晚</h2>
+        <p class="mt-2 text-sm text-stone-500">点击任意一天展开细节：时刻、车程、门票、餐食、住宿与亲子提示。</p>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        <button data-filter="all" class="filter-btn rounded-lg bg-ink px-4 py-2 text-sm font-semibold text-white">全部</button>
+        <button data-filter="light" class="filter-btn rounded-lg border border-stone-300 bg-white px-4 py-2 text-sm font-semibold text-stone-600 transition hover:border-birch hover:text-birch">轻松日</button>
+        <button data-filter="drive" class="filter-btn rounded-lg border border-stone-300 bg-white px-4 py-2 text-sm font-semibold text-stone-600 transition hover:border-birch hover:text-birch">长车程日</button>
+        <button data-filter="highlight" class="filter-btn rounded-lg border border-stone-300 bg-white px-4 py-2 text-sm font-semibold text-stone-600 transition hover:border-birch hover:text-birch">核心景点日</button>
+        <button id="expandAll" class="rounded-lg border border-birch bg-birch/10 px-4 py-2 text-sm font-semibold text-birch transition hover:bg-birch/20">
+          <i class="ri-expand-up-down-line"></i> 全部展开
+        </button>
+      </div>
+    </div>
+    <div id="days" class="space-y-4"></div>
+  </div>
+</section>
+
+<section id="spots" class="scroll-mt-20 border-y border-black/5 bg-white">
+  <div class="mx-auto max-w-[1600px] px-5 py-16 lg:px-10 lg:py-20">
+    <div class="mb-9">
+      <p class="text-xs font-bold uppercase tracking-[.2em] text-birch">Highlights</p>
+      <h2 class="mt-2 text-2xl font-black lg:text-3xl">必打卡景点 · 含亲子适配度</h2>
+      <p class="mt-2 text-sm text-stone-500">徒步强度与建议时长均按 4 岁幼童可完成为基准评估。</p>
+    </div>
+    <div id="spotGrid" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></div>
+  </div>
+</section>
+
+<section id="budget" class="scroll-mt-20">
+  <div class="mx-auto max-w-[1600px] px-5 py-16 lg:px-10 lg:py-20">
+    <div class="grid gap-8 lg:grid-cols-[1.15fr_1fr]">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-[.2em] text-birch">Budget</p>
+        <h2 class="mt-2 text-2xl font-black lg:text-3xl">费用预算 · 一家四口总览</h2>
+        <p class="mt-2 text-sm text-stone-500">按国庆前后旺季中位价估算，不含深圳往返机票。儿童票已按 4 岁免票 / 8 岁半价规则计入。</p>
+        <div id="budgetBars" class="mt-8 space-y-5"></div>
+        <div class="mt-8 rounded-2xl border border-birch/30 bg-birch/5 p-5">
+          <div class="flex items-end justify-between">
+            <span class="text-sm font-semibold text-stone-600">地面总花费预估</span>
+            <span class="text-3xl font-black text-birch" id="budgetTotal">—</span>
+          </div>
+          <p class="mt-2 text-xs leading-relaxed text-stone-500">
+            省钱杠杆：喀纳斯住景区外买「二进票」，比两天各买一进票四口省约 500 元；住宿选可免费取消房型先锁名额；包车按天议价优于单段拼车。
+          </p>
+        </div>
+      </div>
+      <div class="space-y-5">
+        <div class="rounded-2xl border border-black/5 bg-white p-6 shadow-sm">
+          <h3 class="flex items-center gap-2 text-lg font-black"><i class="ri-ticket-2-line text-birch"></i> 门票与区间车速查</h3>
+          <div id="ticketTable" class="mt-4 space-y-2 text-sm"></div>
+        </div>
+        <div class="rounded-2xl border border-black/5 bg-white p-6 shadow-sm">
+          <h3 class="flex items-center gap-2 text-lg font-black"><i class="ri-car-line text-birch"></i> 交通方案对比</h3>
+          <div id="transportCards" class="mt-4 space-y-3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pack" class="scroll-mt-20 border-y border-black/5 bg-gradient-to-b from-stone-50 to-white">
+  <div class="mx-auto max-w-[1600px] px-5 py-16 lg:px-10 lg:py-20">
+    <div class="mb-9 flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-[.2em] text-birch">Checklist</p>
+        <h2 class="mt-2 text-2xl font-black lg:text-3xl">带娃行李清单 · 可勾选</h2>
+        <p class="mt-2 text-sm text-stone-500">进度会保存在本地，收拾一件勾一件。</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="h-2.5 w-40 overflow-hidden rounded-full bg-stone-200">
+          <div id="packBar" class="h-full w-0 rounded-full bg-birch transition-all duration-500"></div>
+        </div>
+        <span id="packCount" class="kbd text-sm font-bold text-stone-600">0/0</span>
+        <button id="packReset" class="rounded-lg border border-stone-300 px-3 py-1.5 text-xs font-semibold text-stone-500 transition hover:border-red-300 hover:text-red-500">重置</button>
+      </div>
+    </div>
+    <div id="packGrid" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"></div>
+  </div>
+</section>
+
+<section id="food" class="scroll-mt-20">
+  <div class="mx-auto max-w-[1600px] px-5 py-16 lg:px-10 lg:py-20">
+    <div class="mb-9">
+      <p class="text-xs font-bold uppercase tracking-[.2em] text-birch">Food</p>
+      <h2 class="mt-2 text-2xl font-black lg:text-3xl">吃什么 · 孩子也能吃的新疆味</h2>
+    </div>
+    <div id="foodGrid" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
+  </div>
+</section>
+
+<section id="tips" class="scroll-mt-20 border-t border-black/5 bg-ink text-white">
+  <div class="mx-auto max-w-[1600px] px-5 py-16 lg:px-10 lg:py-20">
+    <div class="mb-9">
+      <p class="text-xs font-bold uppercase tracking-[.2em] text-birch">Know Before You Go</p>
+      <h2 class="mt-2 text-2xl font-black lg:text-3xl">带娃避坑 · 30 条实战提示</h2>
+      <p class="mt-2 text-sm text-white/60">按主题切换查看。</p>
+    </div>
+    <div id="tipTabs" class="mb-6 flex flex-wrap gap-2"></div>
+    <div id="tipPanel" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"></div>
+  </div>
+</section>
+
+<footer class="bg-ink text-white/70">
+  <div class="mx-auto max-w-[1600px] px-5 py-10 text-center lg:px-10">
+    <div class="mb-4 flex items-center justify-center gap-2 font-bold text-white">
+      <i class="ri-mountain-line text-birch"></i> 喀纳斯金秋计划 · 2026.09.24 - 10.03
+    </div>
+    <p class="mx-auto max-w-2xl text-xs leading-relaxed">
+      门票、区间车与住宿价格为旺季参考值，出行前请以景区官方公告与预订平台实时价为准。喀纳斯、禾木属边境管理区，务必随身携带全家身份证原件（含儿童）。
+    </p>
+    <p class="mt-5">由 <a href="https://with.woa.com/" style="color: #8A2BE2;" target="_blank">With</a> 通过自然语言生成</p>
+  </div>
+</footer>
+
+<button id="toTop" class="fixed bottom-6 right-6 z-50 hidden h-12 w-12 place-items-center rounded-full bg-ink text-white shadow-2xl transition hover:bg-birch">
+  <i class="ri-arrow-up-line text-xl"></i>
+</button>
+
+<script>
+/* 入口模块加载兜底：main.js 加载失败（网络或部署同步的瞬时抖动）时自动重试 3 次，仍失败则给出提示 */
+(function () {
+  var MAX_RETRY = 3;
+  var tries = 0;
+
+  function showTip() {
+    if (document.getElementById('bootTip')) return;
+    var box = document.createElement('div');
+    box.id = 'bootTip';
+    box.className = 'fixed inset-x-0 top-0 z-[999] flex justify-center p-3';
+    box.innerHTML =
+      '<div class="flex items-center gap-3 rounded-xl bg-ink px-4 py-2.5 text-sm font-semibold text-white shadow-2xl">' +
+        '<i class="ri-error-warning-line text-birch"></i>' +
+        '<span>页面脚本加载失败，请检查网络后重试</span>' +
+        '<button id="bootReload" class="rounded-lg bg-birch px-3 py-1.5 text-xs font-bold text-white">重新加载</button>' +
+      '</div>';
+    document.body.appendChild(box);
+    document.getElementById('bootReload').addEventListener('click', function () { location.reload(); });
+  }
+
+  function retry() {
+    if (tries >= MAX_RETRY) { showTip(); return; }
+    tries += 1;
+    setTimeout(function () {
+      import('./js/main.js?retry=' + tries)
+        .then(function () { /* 重试成功，页面恢复正常渲染 */ })
+        .catch(retry);
+    }, 600 * tries);
+  }
+
+  window.addEventListener('error', function (e) {
+    var t = e.target;
+    if (t && t.tagName === 'SCRIPT' && t.id === 'appEntry') retry();
+  }, true);
+})();
+</script>
+<script type="module" src="./js/main.js" id="appEntry"></script>
+</body>
+</html>
