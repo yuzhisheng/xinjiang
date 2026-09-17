@@ -42,6 +42,7 @@ function init() {
   renderFood();
   renderTips();
   observeReveal();
+  document.documentElement.dataset.appBooted = '1';
 }
 
 if (document.readyState === 'loading') {

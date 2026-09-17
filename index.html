@@ -107,7 +107,7 @@ tailwind.config = {
           <i class="ri-wallet-3-line"></i> 预算与清单
         </a>
         <a href="./text.html" class="inline-flex items-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 py-3.5 font-bold text-white backdrop-blur transition hover:bg-white/20">
-          <i class="ri-file-text-line"></i> 纯文字版（方便拷贝）
+          <i class="ri-printer-line"></i> 打印版行程单（可导出 PDF）
         </a>
       </div>
       <div id="heroStats" class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:max-w-3xl"></div>
@@ -343,7 +343,7 @@ tailwind.config = {
     </p>
     <p class="mt-4">
       <a href="./text.html" class="inline-flex items-center gap-1.5 rounded-lg border border-white/20 px-3.5 py-2 text-xs font-bold text-white/80 transition hover:border-birch hover:text-birch">
-        <i class="ri-file-text-line"></i> 纯文字版行程 · 复制粘贴给同行的人
+        <i class="ri-printer-line"></i> 打印版行程单 · 可导出 PDF / 直接打印
       </a>
     </p>
     <p class="mt-5">由 <a href="https://with.woa.com/" style="color: #8A2BE2;" target="_blank">With</a> 通过自然语言生成</p>
@@ -355,40 +355,83 @@ tailwind.config = {
 </button>
 
 <script>
-/* 入口模块加载兜底：main.js 加载失败（网络或部署同步的瞬时抖动）时自动重试 3 次，仍失败则给出提示 */
+/* 入口脚本兜底：失败自动重试 3 次（第 2 次起带时间戳绕过缓存）→ 每会话自愈重载一次 → 仍失败才提示原因 */
 (function () {
+  var ENTRY = 'js/main.js';
   var MAX_RETRY = 3;
   var tries = 0;
+  var reason = '';
+  var dir = location.pathname.replace(/[^/]*$/, '');
+
+  function booted() { return document.documentElement.dataset.appBooted === '1'; }
+  function hideTip() { var el = document.getElementById('bootTip'); if (el) el.parentNode.removeChild(el); }
+  function markOk() {
+    try { sessionStorage.removeItem('bootHardReload'); } catch (e) { /* 隐私模式忽略 */ }
+    hideTip();
+  }
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  /* 带上时间戳重新加载，绕开可能已被缓存的失败响应 */
+  function hardReload() {
+    var u = new URL(location.href);
+    u.searchParams.set('_r', Date.now());
+    location.replace(u.toString());
+  }
 
   function showTip() {
-    if (document.getElementById('bootTip')) return;
+    if (booted() || document.getElementById('bootTip')) return;
+    if (location.protocol === 'file:') reason = '当前以本地文件方式打开，浏览器会拦截模块脚本，请改用网页地址访问';
     var box = document.createElement('div');
     box.id = 'bootTip';
     box.className = 'fixed inset-x-0 top-0 z-[999] flex justify-center p-3';
     box.innerHTML =
-      '<div class="flex items-center gap-3 rounded-xl bg-ink px-4 py-2.5 text-sm font-semibold text-white shadow-2xl">' +
+      '<div class="flex max-w-[92vw] flex-wrap items-center gap-x-3 gap-y-1.5 rounded-xl bg-ink px-4 py-2.5 text-sm font-semibold text-white shadow-2xl">' +
         '<i class="ri-error-warning-line text-birch"></i>' +
         '<span>页面脚本加载失败，请检查网络后重试</span>' +
-        '<button id="bootReload" class="rounded-lg bg-birch px-3 py-1.5 text-xs font-bold text-white">重新加载</button>' +
+        (reason ? '<span class="text-[11px] font-normal text-white/60">' + esc(reason) + '</span>' : '') +
+        '<button id="bootReload" class="rounded-lg bg-birch px-3 py-1.5 text-xs font-bold text-white">强制重新加载</button>' +
       '</div>';
     document.body.appendChild(box);
-    document.getElementById('bootReload').addEventListener('click', function () { location.reload(); });
+    document.getElementById('bootReload').addEventListener('click', hardReload);
   }
 
-  function retry() {
-    if (tries >= MAX_RETRY) { showTip(); return; }
+  function finish() {
+    try {
+      if (!sessionStorage.getItem('bootHardReload')) {
+        sessionStorage.setItem('bootHardReload', '1');
+        setTimeout(hardReload, 150);
+        return;
+      }
+    } catch (e) { /* 隐私模式忽略 */ }
+    showTip();
+  }
+
+  /* 第 1 次用原地址（命中浏览器模块表即直接复用，不会重复渲染）；之后加时间戳绕过缓存 */
+  function attempt() {
+    if (booted()) { markOk(); return; }
+    var i = tries;
     tries += 1;
-    setTimeout(function () {
-      import('./js/main.js?retry=' + tries)
-        .then(function () { /* 重试成功，页面恢复正常渲染 */ })
-        .catch(retry);
-    }, 600 * tries);
+    var url = i === 0 ? dir + ENTRY : dir + ENTRY + '?retry=' + i + '&_t=' + Date.now();
+    import(url).then(function () {
+      if (booted()) { markOk(); return; }
+      if (tries <= MAX_RETRY) setTimeout(attempt, 400); else finish();
+    }).catch(function (e) {
+      reason = String((e && (e.message || e.name)) || '模块加载失败').slice(0, 110);
+      if (tries <= MAX_RETRY) setTimeout(attempt, 500 * tries); else finish();
+    });
   }
 
   window.addEventListener('error', function (e) {
     var t = e.target;
-    if (t && t.tagName === 'SCRIPT' && t.id === 'appEntry') retry();
+    if (t && t.tagName === 'SCRIPT' && t.id === 'appEntry' && !tries) attempt();
   }, true);
+
+  window.addEventListener('load', function () {
+    /* 看门狗：脚本既没报错也没渲染（被静默拦截或卡住）时补一次 */
+    setTimeout(function () { if (!booted() && !tries) attempt(); }, 2000);
+  });
 })();
 </script>
 <script type="module" src="./js/main.js" id="appEntry"></script>

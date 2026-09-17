@@ -199,7 +199,7 @@ export function buildPlainText(mode = 'full') {
 // 交互：渲染 / 复制 / 下载 / 字号
 // ---------------------------------------------------------------
 let toastTimer = null;
-function toast(msg) {
+export function toast(msg) {
   let el = document.getElementById('copyToast');
   if (!el) {
     el = document.createElement('div');
@@ -213,7 +213,7 @@ function toast(msg) {
   toastTimer = setTimeout(() => { el.style.opacity = '0'; }, 2200);
 }
 
-async function copyText(text) {
+export async function copyText(text) {
   try {
     if (navigator.clipboard && window.isSecureContext) {
       await navigator.clipboard.writeText(text);
@@ -239,7 +239,7 @@ async function copyText(text) {
   }
 }
 
-function downloadText(text, filename) {
+export function downloadText(text, filename) {
   const blob = new Blob(['\ufeff' + text], { type: 'text/plain;charset=utf-8' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');

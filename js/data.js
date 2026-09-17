@@ -1,35 +1,39 @@
 export const IMG = {
   kanasLake: 'https://assets.with.tencent.com/default/d0c014cc-29b8-4d93-a239-87527d551f3d/image_1789469181_2_1.jpg',
-  kanasLake2: 'https://assets.with.tencent.com/default/51004970-2088-49f5-ad3c-88523a65502c/image_1789469181_3_1.jpg',
-  kanasLake3: 'https://assets.with.tencent.com/default/9a4a3237-1b32-4acb-86ce-b173cfd56ccb/image_1789469183_1_3.jpg',
-  hemu: 'https://assets.with.tencent.com/default/20956505-2d1c-436e-8062-dacb77a7fcf9/image_1789469185_1_3.jpg',
-  hemu2: 'https://assets.with.tencent.com/default/98432b18-6a79-4e70-a001-6296e9e78391/image_1789469187_2_3.jpg',
-  hemu3: 'https://assets.with.tencent.com/default/890808bc-aa42-4a96-92f6-3466fa4f3d65/image_1789469185_3_3.jpg',
+  kanasLake2: 'https://assets.with.tencent.com/default/929a5389-16a1-4cdf-9768-e8524c950780/image_1789632216_3_1.jpg',
+  kanasLake3: 'https://assets.with.tencent.com/default/6894e9ce-471a-4ecd-98b0-569fe47c7c00/image_1789632216_5_1.jpg',
+  hemu: 'https://assets.with.tencent.com/default/d14884c7-ce9b-4691-922d-e7de6688d536/image_1789632230_2_1.jpg',
+  hemu2: 'img/hemu-viewpoint.jpg',
+  hemu3: 'https://assets.with.tencent.com/default/5b2e4d7b-8b5b-4829-b277-907a74e5a5d0/image_1789635922_2_1.jpg',
   baihaba: 'https://assets.with.tencent.com/default/3dccdc64-9e95-4af5-862f-9045c359aa3e/image_1789469188_1_1.jpg',
   baihaba2: 'https://assets.with.tencent.com/default/c34136d4-58e3-455c-a73e-9b775c69fa0e/image_1789469188_2_1.jpg',
-  wucaitan: 'https://assets.with.tencent.com/default/39534272-1b56-4b4d-8020-c18653dd54f9/image_1789469189_1_1.jpg',
+  wucaitan: 'https://assets.with.tencent.com/default/92eaba50-9e46-49f4-a096-c1062c910920/image_1789637308_10_1.jpg',
   wucaitan2: 'https://assets.with.tencent.com/default/083b136f-5ad6-4db7-9472-4f1a2195a5f5/image_1789469189_2_1.jpg',
-  devil: 'https://assets.with.tencent.com/default/01cf2d0e-cbdb-47a3-92ca-7bc1664e33be/image_1789469201_1_3.jpg',
-  devil2: 'https://assets.with.tencent.com/default/b5d36ab9-3076-4e9b-b78a-608ceaf9763b/image_1789469203_2_3.jpg',
-  shenxianwan: 'https://assets.with.tencent.com/default/ef3e4521-48f7-4393-9ab4-f1d005adf440/image_1789469204_2_1.jpg',
+  devil: 'img/urho-devil-city.jpg',
+  devil2: 'https://assets.with.tencent.com/default/03958ecb-2ad5-4fdc-8698-05bd82d50997/image_1789637303_2_1.jpg',
+  shenxianwan: 'img/kanas-river.jpg',
   shenxianwan2: 'https://assets.with.tencent.com/default/0e535cfb-d46d-4271-8a5e-02bc10a9d70b/image_1789525368_3_1.jpg',
-  bazaar: 'https://assets.with.tencent.com/default/90a7027f-9318-4209-9e64-fba58247e75b/image_1789469206_1_3.jpg',
-  bazaar2: 'https://assets.with.tencent.com/default/779be9a0-2ddf-4a00-bd60-cf6756138d3b/image_1789469205_2_1.jpg',
-  moonbay: 'https://assets.with.tencent.com/default/b1e74ff2-59a6-4c92-b735-14d6d9302959/image_1789469215_1_3.jpg',
-  moonbay2: 'https://assets.with.tencent.com/default/3aae52d7-a003-4f94-b9cc-acbe7c555ee0/image_1789469213_2_1.jpg',
+  bazaar: 'https://assets.with.tencent.com/default/7f32b514-06b0-4b4c-aa5c-56597dbc3abc/image_1789632725_7_1.jpg',
+  bazaar2: 'https://assets.with.tencent.com/default/46eac2eb-710b-4ff3-8bc6-2e021dd9b45e/image_1789632725_5_1.jpg',
+  songwu: 'https://assets.with.tencent.com/default/7911e137-5ecc-4567-bbde-466060a6b970/image_1789632269_8_1.jpg',
+  moonbay: 'https://assets.with.tencent.com/default/c26c10a8-14a9-42e2-9562-761d1672ab52/image_1789631322_2_1.jpg',
+  moonbay2: 'https://assets.with.tencent.com/default/c26c10a8-14a9-42e2-9562-761d1672ab52/image_1789631322_2_1.jpg',
   guanyutai: 'https://assets.with.tencent.com/default/7a26e34e-fe23-49f8-9bd2-1f0d4aa6bbe5/image_1789469219_1_1.jpg',
-  guanyutai2: 'https://assets.with.tencent.com/default/c70b8471-3cb9-49f8-8d73-4db596568fa3/image_1789469219_2_1.jpg',
-  food1: 'https://assets.with.tencent.com/default/312309e7-6102-456e-842b-83e9777dd4f2/image_1789469217_2_3.jpg',
-  food2: 'https://assets.with.tencent.com/default/09484230-8513-45a3-a6a6-e23da01341bf/image_1789469218_1_3.jpg',
-  food3: 'https://assets.with.tencent.com/default/dfd16a1c-fd75-487d-b4ba-08cc99c9136c/image_1789469218_3_3.jpg',
-  sailimu: 'https://assets.with.tencent.com/default/a3b1d135-85b2-4736-8a1b-0c5f0042d87d/image_1789471192_1_1.jpg',
-  sailimu2: 'https://assets.with.tencent.com/default/9c8bb4ab-b397-4af4-86dc-e45ff4ce21eb/image_1789471192_3_1.jpg',
-  sailimu3: 'https://assets.with.tencent.com/default/27f409f8-145a-4f3e-85c2-45b5cd6a5ed6/image_1789471194_2_3.jpg',
+  guanyutai2: 'https://assets.with.tencent.com/default/f159ebff-2b87-4dee-96c0-915f03a2a95d/image_1789637320_5_1.jpg',
+  food1: 'https://assets.with.tencent.com/default/72448a90-9948-4772-bcbe-ae3ab3a751e2/image_1789635942_10_1.jpg',
+  food2: 'https://assets.with.tencent.com/default/c582705f-44a1-4f76-8587-899da9844da7/image_1789633547_1_1.jpg',
+  food3: 'https://assets.with.tencent.com/default/e8c4d0a3-15b9-4736-806d-e72e2fdea483/image_1789633564_1_1.jpg',
+  food4: 'https://assets.with.tencent.com/default/603c7bd3-22f6-44ec-adfa-503908549481/image_1789632793_3_1.jpg',
+  food5: 'https://assets.with.tencent.com/default/e82f2ae6-b437-4f2e-b3a1-be86824a2e20/image_1789636033_10_1.jpg',
+  food6: 'img/milk-tea-dairy.jpg',
+  sailimu: 'https://assets.with.tencent.com/default/05c76199-ffc1-4c9e-a1ca-580f1a334546/image_1789631471_3_1.jpg',
+  sailimu2: 'img/sayram-lake.jpg',
+  sailimu3: 'https://assets.with.tencent.com/default/cf64cf23-fb1c-4a73-b2b7-9fd9bde1d63d/image_1789632242_7_1.jpg',
   ahe: 'https://assets.with.tencent.com/default/915cd35b-957e-4f3e-a0c1-5d76c4fd9f4c/image_1789474269_1_1.png',
   ahe2: 'https://assets.with.tencent.com/default/71836089-2bff-4dc2-95f6-6a949d9e926c/image_1789474271_2_3.jpg',
   ahe3: 'https://assets.with.tencent.com/default/c90685fe-3ad1-4f89-9214-f257b14cf45a/image_1789474269_3_1.jpg',
-  ulungur: 'https://assets.with.tencent.com/default/d04ec453-cd94-4f64-836c-02059ef29892/image_1789474274_1_1.jpg',
-  ulungur2: 'https://assets.with.tencent.com/default/3df1e3f0-a27f-4d3c-8bae-fdf74a5daa06/image_1789474274_4_1.jpg'
+  ulungur: 'https://assets.with.tencent.com/default/6ba01170-df8e-42cb-84f4-4a9b843ab85a/image_1789633531_3_1.jpg',
+  ulungur2: 'https://assets.with.tencent.com/default/12ed1cb1-9c40-4931-ba9b-8d4ba3c13501/image_1789634700_4_1.jpg'
 };
 
 export const NAV = [
@@ -479,7 +483,7 @@ export const DAYS = [
     id: 8, date: '10/02 周五', title: '赛里木湖日出 → 乌鲁木齐 · 东归与大巴扎收官',
     tags: ['drive', 'light'], badge: '东归+大巴扎', img: IMG.sailimu2, stay: '乌鲁木齐机场附近酒店（明晨赶航班）',
     drive: '约564km / 约6h15m（连霍高速 G30 东归 · 过路费约 205 元）· 7:00 起看日出后 9:30 出发',
-    wake: { t: '07:00', label: '例外 4 · 只为赛湖日出', kind: 'must', note: '营地就在景区里、出门即湖；日出 07:50 不等人，看完回营地补早餐' },
+    wake: { t: '07:00', label: '例外 3 · 只为赛湖日出', kind: 'must', note: '营地就在景区里、出门即湖；日出 07:50 不等人，看完回营地补早餐' },
     nav: [
       { to: '果子沟大桥观景台', leg: '约 32km · 约 32m（营地起 · 可选）', hint: '日出后先去西行打卡，再掉头东归；往返多花约 1 小时' },
       { to: '乌鲁木齐天山国际机场', leg: '约 543km · 约 5h36m', hint: 'G30 连霍高速一路东归，奎屯 / 乌苏服务区午餐放电；过路费约 205 元' },
@@ -507,7 +511,7 @@ export const DAYS = [
   },
   {
     id: 9, date: '10/03 周六', title: '乌鲁木齐 → 深圳 · 上午航班，下午到家',
-    tags: ['light'], badge: '返程日', img: IMG.kanasLake3, stay: '—',
+    tags: ['light'], badge: '返程日', img: IMG.bazaar, stay: '—',
     drive: '上午航班 09:40 起飞 · 航程约 5.5h · 15:10 左右落地深圳',
     wake: { t: '06:30', label: '唯一被航班规定的起床', kind: 'flight', note: '酒店就在机场旁，不用摸黑赶路；6:30 比凌晨航班多睡 2 小时' },
     timeline: [
@@ -537,7 +541,7 @@ export const SPOTS = [
   { name: '喀纳斯月亮湾', img: IMG.moonbay2, area: '喀纳斯', level: '易', hours: '1h', kid: 5, desc: '河湾中两个沙洲状如脚印，是喀纳斯的封面。栈道平缓，全家合影首选。' },
   { name: '神仙湾晨雾', img: IMG.shenxianwan, area: '喀纳斯', level: '易', hours: '1h', kid: 5, desc: '清晨水汽升腾，河道分叉、水草丰美，光线柔和时如梦。住景区内（云中歌）不用赶早班车，7:50 从新村出发，赶 8-9 点最浓的雾。' },
   { name: '卧龙湾', img: IMG.shenxianwan2, area: '喀纳斯', level: '易', hours: '40min', kid: 5, desc: '形似卧龙的河湾，环湖栈道一圈 20 分钟，孩子能自己走完，成就感强。' },
-  { name: '喀纳斯湖边栈道', img: IMG.guanyutai, area: '喀纳斯', level: '易', hours: '2h', kid: 5, desc: '观鱼台季节性关闭期间（至 2027 春）的替代玩法：约 4km 湖滨平缓步道，湖水随光线变色，全家都能走完。' },
+{ name: '喀纳斯湖边栈道', img: IMG.guanyutai2, area: '喀纳斯', level: '易', hours: '2h', kid: 5, desc: '观鱼台季节性关闭期间（至 2027 春）的替代玩法：约 4km 湖滨平缓步道，湖水随光线变色，全家都能走完。' },
   { name: '赛里木湖环湖公路', img: IMG.sailimu, area: '博尔塔拉', level: '易', hours: '半天', kid: 5, desc: '"大西洋最后一滴眼泪"。环湖约 90km 自驾随停随拍：点将台、西海草原、天鹅湖湿地，10 月初雪山映蓝湖。' },
   { name: '赛里木湖日出', img: IMG.sailimu2, area: '赛里木湖', level: '易', hours: '1h', kid: 5, desc: '10 月初日出约 07:50，太阳从湖面升起把湖水染成金红。必须住湖边才赶得到，羽绒手套必备。' },
   { name: '果子沟大桥', img: IMG.sailimu3, area: '赛湖西侧 · G30', level: '易', hours: '30min', kid: 4, desc: '新疆第一高桥，桥面距谷底 200 米。从湖畔营地出发约半小时车程（32km）到观景台，时间富余可顺路打卡。' },
@@ -545,7 +549,7 @@ export const SPOTS = [
   { name: '乌尔禾世界魔鬼城', img: IMG.devil2, area: '克拉玛依', level: '易', hours: '2h', kid: 4, desc: '风蚀雅丹土林，坐观光车游览。孩子当成恐龙星球探险，风沙大需口罩。' },
   { name: '喀纳斯湖游船', img: IMG.kanasLake3, area: '喀纳斯', level: '易', hours: '40min', kid: 4, desc: '湖水随季节天气变色，传说有湖怪。孩子须穿好救生衣，风大时会颠。' },
   { name: '新疆国际大巴扎', img: IMG.bazaar, area: '乌鲁木齐', level: '易', hours: '2h', kid: 4, desc: '世界规模最大的巴扎之一。观光塔下拍照、集市称干果买手信，返程前半天的轻松收官。' },
-  { name: '大巴扎歌舞宴', img: IMG.bazaar2, area: '乌鲁木齐', level: '易', hours: '2h', kid: 5, desc: '边用餐边看民族歌舞：手鼓、冬不拉与旋转的裙摆，孩子全程目不转睛，新疆行的收官仪式。' }
+{ name: '大巴扎歌舞宴', img: IMG.songwu, area: '乌鲁木齐', level: '易', hours: '2h', kid: 5, desc: '边用餐边看民族歌舞：手鼓、冬不拉与旋转的裙摆，孩子全程目不转睛，新疆行的收官仪式。' }
 ];
 
 export const BUDGET = [
@@ -620,9 +624,9 @@ export const FOODS = [
   { name: '福海烤鱼', img: IMG.ulungur, where: '福海县城 · 乌伦古湖', kid: '肉嫩少刺，孩子适合', desc: '乌伦古湖冷水鱼现烤，鱼皮焦香、肉紧实清甜，D1 福海午餐的正解。配一碗鱼头汤更完整。' },
   { name: '烤羊肉串与烤羊排', img: IMG.food1, where: '全程都有 · 禾木民宿最佳', kid: '孩子多能接受，让店家少放辣椒粉', desc: '北疆羊肉不腥，原味孜然就够香。给孩子点原味串，大人再加辣。' },
   { name: '手抓饭与拉条子', img: IMG.food2, where: '阿勒泰、布尔津、乌尔禾', kid: '最适合孩子的主食', desc: '抓饭有胡萝卜羊肉与米饭，拉条子可要"过水"版本不辣，是孩子的救命主食。' },
-  { name: '额尔齐斯河冷水鱼', img: IMG.food3, where: '布尔津河堤夜市最正', kid: '肉嫩少刺，适合孩子', desc: '高寒水域生长慢，肉紧实清甜。清蒸或烤都好，是当地最值得吃的一道。' },
-  { name: '大盘鸡', img: IMG.food1, where: '沙湾（发源地）、乌鲁木齐、各县城', kid: '要求微辣或不辣', desc: '鸡块土豆宽粉，最后拌皮带面。分量极大，一家四口一个中盘足够。' },
-  { name: '奶茶与奶制品', img: IMG.food2, where: '禾木、喀纳斯民宿', kid: '奶皮子奶疙瘩孩子爱吃', desc: '哈萨克咸奶茶配包尔萨克，清晨喝一碗全身暖。禾木蜂蜜也值得带。' },
+{ name: '额尔齐斯河冷水鱼', img: IMG.food5, where: '布尔津河堤夜市最正', kid: '肉嫩少刺，适合孩子', desc: '高寒水域生长慢，肉紧实清甜。清蒸或烤都好，是当地最值得吃的一道。' },
+{ name: '大盘鸡', img: IMG.food4, where: '沙湾（发源地）、乌鲁木齐、各县城', kid: '要求微辣或不辣', desc: '鸡块土豆宽粉，最后拌皮带面。分量极大，一家四口一个中盘足够。' },
+{ name: '奶茶与奶制品', img: IMG.food6, where: '禾木、喀纳斯民宿', kid: '奶皮子奶疙瘩孩子爱吃', desc: '哈萨克咸奶茶配包尔萨克，清晨喝一碗全身暖。禾木蜂蜜也值得带。' },
   { name: '烤包子与馕', img: IMG.food3, where: '阿勒泰市区、各景区门口', kid: '路上最好的干粮', desc: '皮薄馅足的羊肉烤包子出炉最香。阿禾公路出发前买几个馕放车上，观景台野餐全靠它。' }
 ];
 

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>纯文字版行程（一键复制）· 北疆金秋 10 日自驾</title>
+<title>北疆10日自驾行程-完整版</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css">
 <script>
@@ -23,101 +23,253 @@ tailwind.config = {
 }
 </script>
 <style>
-  body { background-color: #faf7f2; }
-  .plain-body {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "PingFang SC", "Microsoft YaHei", monospace;
-    white-space: pre-wrap;
-    word-break: break-word;
-    line-height: 1.9;
-    letter-spacing: .01em;
+  body { background-color: #ece7df; }
+
+  /* ===== 文档排版（屏幕上模拟 A4 纸张；打印时走 @page 规则） ===== */
+  .doc {
+    max-width: 210mm;
+    margin: 0 auto;
+    padding: 16mm 15mm;
+    background: #fff;
+    color: #1c1917;
+    font-size: 13px;
+    line-height: 1.8;
+    border-radius: 4px;
+    box-shadow: 0 24px 60px -24px rgba(28, 25, 23, .35);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
-  .plain-body::-webkit-scrollbar { width: 8px; height: 8px; }
-  .plain-body::-webkit-scrollbar-thumb { background: rgba(28,25,23,.18); border-radius: 8px; }
+  .doc p { margin: 0; }
+  .doc b { font-weight: 800; }
+
+  .doc .doc-kicker { text-align: center; font-size: 12px; letter-spacing: .32em; color: #a16207; font-weight: 700; margin-bottom: 8px; }
+  .doc h1 { font-size: 25px; line-height: 1.4; font-weight: 900; text-align: center; letter-spacing: .01em; margin: 0; }
+  .doc .doc-sub { text-align: center; font-size: 12.5px; color: #57534e; margin-top: 7px; }
+
+  .doc .kv { width: 100%; border-collapse: collapse; margin-top: 14px; border-top: 2px solid #1c1917; border-bottom: 2px solid #1c1917; }
+  .doc .kv th { text-align: left; white-space: nowrap; vertical-align: top; font-weight: 800; padding: 5px 12px 5px 0; font-size: 12.5px; color: #44403c; }
+  .doc .kv td { vertical-align: top; padding: 5px 0; font-size: 12.5px; }
+  .doc .kv tr + tr th, .doc .kv tr + tr td { border-top: 1px solid #e7e3dc; }
+
+  .doc h2 { font-size: 16.5px; font-weight: 900; margin: 26px 0 10px; padding-bottom: 5px; border-bottom: 2px solid #1c1917; }
+  .doc h3 { font-size: 14.5px; font-weight: 900; margin: 0; }
+
+  /* 表格清单（路线 / 门票 / 预算） */
+  .doc .tbl { width: 100%; border-collapse: collapse; margin-top: 4px; }
+  .doc .tbl th, .doc .tbl td { border: 1px solid #d6d3d1; padding: 4px 8px; font-size: 12.5px; vertical-align: top; text-align: left; line-height: 1.7; }
+  .doc .tbl thead th { background: #f6f2ea; font-weight: 800; white-space: nowrap; }
+  .doc .tbl .c { text-align: center; white-space: nowrap; }
+  .doc .tbl .c-day { width: 42px; white-space: nowrap; font-weight: 800; }
+  .doc .tbl .c-km { width: 76px; white-space: nowrap; }
+  .doc .tbl .c-city { white-space: nowrap; }
+  .doc .tbl tr.total td { font-weight: 800; background: #faf7f2; }
+
+  .doc .note { font-size: 12px; color: #57534e; margin-top: 8px; line-height: 1.75; }
+
+  /* 逐日行程 */
+  .doc .day { margin: 18px 0 0; border: 1px solid #e5e1da; border-radius: 6px; padding: 10px 12px 12px; }
+  .doc .day-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; border-left: 4px solid #c8a04a; padding-left: 9px; }
+  .doc .day-head h3 { flex: 1 1 auto; }
+  .doc .day-badge { font-size: 11px; font-weight: 700; color: #92400e; border: 1px solid #e6cfa0; background: #fdf6e7; border-radius: 999px; padding: 1px 9px; white-space: nowrap; }
+  .doc .facts { margin: 7px 0 4px; }
+  .doc .facts p { font-size: 12.5px; margin: 1.5px 0; }
+  .doc .facts b { display: inline-block; min-width: 42px; margin-right: 7px; color: #57534e; font-weight: 800; }
+
+  .doc .tl { width: 100%; border-collapse: collapse; margin: 6px 0 2px; border-top: 1px solid #ddd8cf; }
+  .doc .tl td { border-bottom: 1px solid #eceae5; padding: 4px 6px; font-size: 12.5px; line-height: 1.75; vertical-align: top; }
+  .doc .tl td.t { width: 54px; white-space: nowrap; font-weight: 900; color: #92400e; font-variant-numeric: tabular-nums; }
+  .doc .navflag { display: inline-block; margin-left: 6px; padding: 0 6px; border: 1px solid #d9d3c6; border-radius: 4px; font-size: 11px; color: #57534e; white-space: nowrap; background: #faf8f4; }
+
+  .doc .navbox { margin: 7px 0 2px; border: 1px dashed #d9d3c6; border-radius: 6px; padding: 7px 10px; background: #fbf9f5; }
+  .doc .navbox-t { font-size: 12px; font-weight: 900; color: #92400e; margin-bottom: 3px; }
+  .doc .navlist { margin: 0; padding-left: 18px; list-style: decimal; }
+  .doc .navlist li { font-size: 12.5px; line-height: 1.75; margin: 2px 0; }
+  .doc .navline { font-size: 12.5px; margin: 6px 0 2px; }
+  .doc .navline .lb { display: inline-block; font-weight: 800; color: #57534e; margin-right: 6px; }
+
+  .doc .sub { margin: 7px 0 2px; }
+  .doc .sub-t { font-size: 12px; font-weight: 900; color: #57534e; margin-bottom: 2px; }
+  .doc .dot { margin: 0; padding-left: 18px; list-style: disc; }
+  .doc .dot li { font-size: 12.5px; line-height: 1.75; margin: 2px 0; }
+
+  .doc .meal { font-size: 12.5px; margin: 6px 0 0; }
+
+  /* 备选版本 */
+  .doc .alts { margin-top: 10px; border-top: 1px dashed #d9d3c6; padding-top: 8px; }
+  .doc .alts-t { font-size: 13.5px; font-weight: 900; }
+  .doc .alts-note { font-size: 12.5px; margin: 3px 0; line-height: 1.75; }
+  .doc .alts-note b, .doc .plan-sum b, .doc .plan-wake b, .doc .plan-verdict b { display: inline-block; margin-right: 6px; color: #57534e; font-weight: 800; }
+  .doc .plan { border: 1px solid #e5e1da; border-radius: 6px; padding: 7px 10px 8px; margin-top: 7px; }
+  .doc .plan.main { background: #faf7f0; border-color: #e8dec5; }
+  .doc .plan-t { font-size: 13px; font-weight: 900; }
+  .doc .plan-meta { font-size: 12px; color: #92400e; font-weight: 700; margin: 1px 0 3px; }
+  .doc .plan-sum { font-size: 12.5px; margin: 3px 0; line-height: 1.75; }
+  .doc .plan-wake { font-size: 12.5px; margin: 3px 0; }
+  .doc .plan-verdict { font-size: 12.5px; margin: 4px 0 0; }
+
+  /* 红线 / 必办 */
+  .doc .rules { margin: 6px 0 0; padding-left: 22px; list-style: decimal; }
+  .doc .rules li { font-size: 12.5px; line-height: 1.8; margin: 4px 0; }
+  .doc .checkgroup { margin-top: 10px; }
+  .doc .checkgroup-t { font-size: 13px; font-weight: 900; margin-bottom: 3px; }
+  .doc .checklist { list-style: none; margin: 0; padding: 0; }
+  .doc .checklist li { display: flex; gap: 7px; font-size: 12.5px; line-height: 1.75; margin: 2.5px 0; }
+  .doc .checklist .box { flex: none; font-weight: 700; color: #44403c; }
+  .doc .hot { color: #b91c1c; }
+
+  /* 页脚 */
+  .doc .doc-foot { margin-top: 26px; border-top: 1px solid #d6d3d1; padding-top: 10px; text-align: center; }
+  .doc .doc-foot .note { margin: 3px 0; }
+  .doc .doc-foot p:last-child { font-size: 12px; color: #78716c; margin-top: 8px; }
+
+  @media (max-width: 640px) {
+    .doc { padding: 18px 14px; font-size: 12.5px; }
+  }
+
+  /* ===== 打印：A4 排版，隐藏工具栏，整块不跨页 ===== */
+  @page { size: A4; margin: 12mm 11mm 13mm; }
+  @media print {
+    body { background: #fff !important; }
+    .no-print { display: none !important; }
+    .doc { max-width: none; margin: 0; padding: 0; border-radius: 0; box-shadow: none; font-size: 12.5px; line-height: 1.7; }
+    .doc p { orphans: 3; widows: 3; }
+    .doc h1 { font-size: 21px; }
+    .doc h2 { font-size: 15px; margin-top: 18px; }
+    .doc h3 { font-size: 13.5px; }
+    .doc .day { margin-top: 12px; }
+    .doc .tl td, .doc .tbl th, .doc .tbl td { padding-top: 3px; padding-bottom: 3px; }
+    .page-break { break-before: page; }
+    .day, .plan, .checkgroup, .kv tr, .tbl tr, .tl tr, .checklist li, .rules li, .navlist li { break-inside: avoid; }
+    .day-head, .plan-t, .checkgroup-t, .alts-t, .navbox-t, .sub-t, h2 { break-after: avoid; }
+    a { color: inherit !important; text-decoration: none !important; }
+  }
 </style>
 </head>
 <body class="font-sans text-ink antialiased">
 
-<header class="sticky top-0 z-50 border-b border-black/5 bg-white/90 backdrop-blur">
-  <div class="mx-auto flex max-w-[1100px] flex-wrap items-center gap-x-3 gap-y-2 px-4 py-3 lg:px-8">
+<header class="no-print sticky top-0 z-50 border-b border-black/5 bg-white/90 backdrop-blur">
+  <div class="mx-auto flex max-w-[1180px] flex-wrap items-center gap-x-3 gap-y-2 px-4 py-3 lg:px-8">
     <a href="./index.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-stone-500 transition hover:text-birch">
       <i class="ri-arrow-left-line"></i>完整攻略
     </a>
     <span class="hidden h-5 w-px bg-stone-200 sm:block"></span>
     <div class="flex min-w-0 items-center gap-2">
-      <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-birch text-white shadow"><i class="ri-file-text-line text-lg"></i></span>
+      <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-birch text-white shadow"><i class="ri-printer-line text-lg"></i></span>
       <div class="min-w-0 leading-tight">
-        <p class="truncate text-sm font-black">纯文字版行程 · 复制即用</p>
-        <p id="plainStat" class="text-[11px] text-stone-400">生成中…</p>
+        <p class="truncate text-sm font-black">行程规划文档 · 打印版</p>
+        <p id="docStat" class="text-[11px] text-stone-400">生成中…</p>
       </div>
     </div>
     <div class="ml-auto flex flex-wrap items-center gap-2">
       <div class="flex items-center gap-0.5 rounded-xl border border-stone-200 bg-stone-50 p-1">
-        <button type="button" data-mode="full">完整版</button>
-        <button type="button" data-mode="brief">精简版</button>
+        <button type="button" data-mode="full" class="rounded-lg bg-ink px-3.5 py-1.5 text-xs font-bold text-white transition">完整版</button>
+        <button type="button" data-mode="brief" class="rounded-lg px-3.5 py-1.5 text-xs font-bold text-stone-500 transition hover:text-birch">精简版</button>
       </div>
-      <button type="button" id="fontMinus" class="grid h-9 w-9 place-items-center rounded-xl border border-stone-300 bg-white text-xs font-black text-stone-500 transition hover:border-birch hover:text-birch">A-</button>
-      <button type="button" id="fontPlus" class="grid h-9 w-9 place-items-center rounded-xl border border-stone-300 bg-white text-sm font-black text-stone-500 transition hover:border-birch hover:text-birch">A+</button>
-      <button type="button" id="copyAll" class="inline-flex items-center gap-1.5 rounded-xl bg-birch px-4 py-2 text-sm font-bold text-white shadow transition hover:bg-amber-600">
-        <i class="ri-file-copy-line"></i>复制全文
+      <button type="button" id="copyAll" class="inline-flex items-center gap-1.5 rounded-xl border border-stone-300 bg-white px-3.5 py-2 text-xs font-bold text-stone-600 transition hover:border-birch hover:text-birch">
+        <i class="ri-file-copy-line"></i>复制文字
       </button>
-      <button type="button" id="download" class="inline-flex items-center gap-1.5 rounded-xl border border-stone-300 bg-white px-4 py-2 text-sm font-bold text-stone-600 transition hover:border-birch hover:text-birch">
+      <button type="button" id="download" class="inline-flex items-center gap-1.5 rounded-xl border border-stone-300 bg-white px-3.5 py-2 text-xs font-bold text-stone-600 transition hover:border-birch hover:text-birch">
         <i class="ri-download-2-line"></i>下载 .txt
+      </button>
+      <button type="button" id="printBtn" class="inline-flex items-center gap-1.5 rounded-xl bg-ink px-4 py-2 text-sm font-bold text-white shadow transition hover:bg-birch">
+        <i class="ri-printer-line"></i>打印 / 存为 PDF
       </button>
     </div>
   </div>
 </header>
 
-<main class="mx-auto max-w-[1100px] px-4 py-6 lg:px-8 lg:py-8">
-  <div class="mb-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 rounded-2xl border border-birch/25 bg-birch/10 px-4 py-3 text-xs leading-relaxed text-stone-600">
-    <span class="inline-flex items-center gap-1.5 font-black text-birch"><i class="ri-lightbulb-line text-base"></i>用法</span>
-    <span>点「复制全文」即可粘贴到微信 / 备忘录 / 邮件；也可「下载 .txt」存到手机离线看。</span>
-    <span class="text-stone-400">内容与完整攻略页同源，行程一改这里自动跟着变。</span>
+<div class="no-print mx-auto mt-5 max-w-[1180px] px-4 lg:px-8">
+  <div class="flex flex-wrap items-center gap-x-4 gap-y-2 rounded-2xl border border-birch/25 bg-birch/10 px-4 py-3 text-xs leading-relaxed text-stone-600">
+    <span class="inline-flex items-center gap-1.5 font-black text-birch"><i class="ri-printer-line text-base"></i>怎么变成 PDF</span>
+    <span>点右上角<b class="text-stone-800">「打印 / 存为 PDF」</b>，在打印窗口把目标选为<b class="text-stone-800">「另存为 PDF」</b>并保存，即得 PDF 文件；也可以直接打印。文档已按 <b class="text-stone-800">A4</b> 排版、无图片，清爽省墨。想更干净可在打印窗口取消勾选「页眉和页脚」。</span>
+    <span class="text-stone-400">内容与完整攻略同一数据源，行程一改这里自动同步。</span>
   </div>
-  <pre id="plainText" class="plain-body rounded-2xl border border-black/5 bg-white p-5 text-[13.5px] text-stone-700 shadow-sm lg:p-8">正在生成文字版行程…</pre>
+</div>
+
+<main class="px-3 pb-14 pt-5 sm:px-6">
+  <article id="doc" class="doc">正在生成行程文档…</article>
 </main>
 
-<footer class="mx-auto max-w-[1100px] px-4 pb-10 pt-2 text-center lg:px-8">
-  <p class="text-xs leading-relaxed text-stone-400">门票、区间车与住宿价格为旺季参考值，出行前请以景区官方公告与预订平台实时价为准。</p>
-  <p class="mt-3">由 <a href="https://with.woa.com/" style="color: #8A2BE2;" target="_blank">With</a> 通过自然语言生成</p>
-</footer>
-
 <script>
-/* 入口模块加载兜底：网络或部署同步瞬时抖动时自动重试 3 次 */
+/* 入口脚本兜底：失败自动重试 3 次（第 2 次起带时间戳绕过缓存）→ 每会话自愈重载一次 → 仍失败才提示原因 */
 (function () {
+  var ENTRY = 'js/plandoc.js';
   var MAX_RETRY = 3;
   var tries = 0;
+  var reason = '';
+  var dir = location.pathname.replace(/[^/]*$/, '');
+
+  function booted() { return document.documentElement.dataset.appBooted === '1'; }
+  function hideTip() { var el = document.getElementById('bootTip'); if (el) el.parentNode.removeChild(el); }
+  function markOk() {
+    try { sessionStorage.removeItem('bootHardReload'); } catch (e) { /* 隐私模式忽略 */ }
+    hideTip();
+  }
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  /* 带上时间戳重新加载，绕开可能已被缓存的失败响应 */
+  function hardReload() {
+    var u = new URL(location.href);
+    u.searchParams.set('_r', Date.now());
+    location.replace(u.toString());
+  }
 
   function showTip() {
-    if (document.getElementById('bootTip')) return;
+    if (booted() || document.getElementById('bootTip')) return;
+    if (location.protocol === 'file:') reason = '当前以本地文件方式打开，浏览器会拦截模块脚本，请改用网页地址访问';
     var box = document.createElement('div');
     box.id = 'bootTip';
     box.className = 'fixed inset-x-0 top-0 z-[999] flex justify-center p-3';
     box.innerHTML =
-      '<div class="flex items-center gap-3 rounded-xl bg-ink px-4 py-2.5 text-sm font-semibold text-white shadow-2xl">' +
+      '<div class="flex max-w-[92vw] flex-wrap items-center gap-x-3 gap-y-1.5 rounded-xl bg-ink px-4 py-2.5 text-sm font-semibold text-white shadow-2xl">' +
         '<i class="ri-error-warning-line text-birch"></i>' +
         '<span>页面脚本加载失败，请检查网络后重试</span>' +
-        '<button id="bootReload" class="rounded-lg bg-birch px-3 py-1.5 text-xs font-bold text-white">重新加载</button>' +
+        (reason ? '<span class="text-[11px] font-normal text-white/60">' + esc(reason) + '</span>' : '') +
+        '<button id="bootReload" class="rounded-lg bg-birch px-3 py-1.5 text-xs font-bold text-white">强制重新加载</button>' +
       '</div>';
     document.body.appendChild(box);
-    document.getElementById('bootReload').addEventListener('click', function () { location.reload(); });
+    document.getElementById('bootReload').addEventListener('click', hardReload);
   }
 
-  function retry() {
-    if (tries >= MAX_RETRY) { showTip(); return; }
+  function finish() {
+    try {
+      if (!sessionStorage.getItem('bootHardReload')) {
+        sessionStorage.setItem('bootHardReload', '1');
+        setTimeout(hardReload, 150);
+        return;
+      }
+    } catch (e) { /* 隐私模式忽略 */ }
+    showTip();
+  }
+
+  /* 第 1 次用原地址（命中浏览器模块表即直接复用，不会重复渲染）；之后加时间戳绕过缓存 */
+  function attempt() {
+    if (booted()) { markOk(); return; }
+    var i = tries;
     tries += 1;
-    setTimeout(function () {
-      import('./js/plaintext.js?retry=' + tries)
-        .then(function () { /* 重试成功 */ })
-        .catch(retry);
-    }, 600 * tries);
+    var url = i === 0 ? dir + ENTRY : dir + ENTRY + '?retry=' + i + '&_t=' + Date.now();
+    import(url).then(function () {
+      if (booted()) { markOk(); return; }
+      if (tries <= MAX_RETRY) setTimeout(attempt, 400); else finish();
+    }).catch(function (e) {
+      reason = String((e && (e.message || e.name)) || '模块加载失败').slice(0, 110);
+      if (tries <= MAX_RETRY) setTimeout(attempt, 500 * tries); else finish();
+    });
   }
 
   window.addEventListener('error', function (e) {
     var t = e.target;
-    if (t && t.tagName === 'SCRIPT' && t.id === 'appEntry') retry();
+    if (t && t.tagName === 'SCRIPT' && t.id === 'appEntry' && !tries) attempt();
   }, true);
+
+  window.addEventListener('load', function () {
+    /* 看门狗：脚本既没报错也没渲染（被静默拦截或卡住）时补一次 */
+    setTimeout(function () { if (!booted() && !tries) attempt(); }, 2000);
+  });
 })();
 </script>
-<script type="module" src="./js/plaintext.js" id="appEntry"></script>
+<script type="module" src="./js/plandoc.js" id="appEntry"></script>
 </body>
 </html>
