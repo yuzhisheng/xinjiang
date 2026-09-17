@@ -5,6 +5,7 @@
 // ===================================================================
 import { DAYS, ROUTE, TICKETS, BUDGET, PREP, PREP_META } from './data.js';
 import { buildPlainText, copyText, downloadText, toast } from './plaintext.js';
+import { exportPdf, saveBlob } from './pdfexport.js';
 
 // ---------------------------------------------------------------
 // 工具
@@ -248,6 +249,103 @@ function footBlock() {
 }
 
 // ---------------------------------------------------------------
+// PDF 下载 / 打印（纯前端生成，不依赖打印窗口）
+// ---------------------------------------------------------------
+const pdfName = mode => `北疆10日行程-${mode === 'full' ? '完整版' : '精简版'}.pdf`;
+
+/** 生成进度遮罩（生成长文档要几秒到几十秒，必须给出反馈） */
+function showOverlay(text) {
+  let el = document.getElementById('pdfOverlay');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'pdfOverlay';
+    el.className = 'fixed inset-0 z-[1000] flex items-center justify-center bg-ink/45 px-4 backdrop-blur-sm';
+    el.innerHTML = `
+      <div class="w-full max-w-sm rounded-2xl bg-white p-6 text-center shadow-2xl">
+        <span class="mx-auto mb-3 grid h-12 w-12 place-items-center rounded-full bg-birch/15 text-birch">
+          <i class="ri-loader-4-line animate-spin text-2xl"></i>
+        </span>
+        <p class="text-base font-black text-ink">正在生成 PDF</p>
+        <p id="pdfStep" class="mt-1 min-h-[2.4em] text-xs leading-relaxed text-stone-500">准备中…</p>
+        <p class="mt-2 text-[11px] leading-relaxed text-stone-400">文档越长越慢（完整版通常 10 多秒到 1 分钟），请耐心等待，勿关闭或刷新页面</p>
+      </div>`;
+    document.body.appendChild(el);
+  }
+  const s = el.querySelector('#pdfStep');
+  if (s && text) s.textContent = text;
+  el.style.display = 'flex';
+}
+
+function hideOverlay() {
+  const el = document.getElementById('pdfOverlay');
+  if (el) el.style.display = 'none';
+}
+
+/** 生成完成弹窗：自动下载之外，再给两个手动出口，防止被浏览器/预览窗口拦截 */
+function showDoneDialog(pages, blob, filename) {
+  const url = URL.createObjectURL(blob);
+  const size = blob && blob.size ? (blob.size / 1048576).toFixed(1) + ' MB' : '';
+  const el = document.createElement('div');
+  el.id = 'pdfDone';
+  el.className = 'fixed inset-0 z-[1000] flex items-center justify-center bg-ink/40 px-4 backdrop-blur-sm';
+  el.innerHTML = `
+    <div class="w-full max-w-sm rounded-2xl bg-white p-5 text-center shadow-2xl">
+      <span class="mx-auto mb-2.5 grid h-11 w-11 place-items-center rounded-full bg-emerald-50 text-emerald-600">
+        <i class="ri-file-pdf-2-line text-2xl"></i>
+      </span>
+      <p class="text-base font-black text-ink">PDF 生成完成</p>
+      <p class="mt-1 text-xs leading-relaxed text-stone-500">共 ${pages} 页${size ? ' · 约 ' + size : ''} · A4 无图版<br>若浏览器没有自动下载，点下面按钮即可</p>
+      <p class="mt-2 rounded-lg bg-stone-50 px-3 py-2 text-[11px] leading-relaxed text-stone-500">若两个按钮都没反应（多见于嵌入的预览窗口），把本页在新标签页打开后再点「下载 PDF」即可。</p>
+      <div class="mt-4 flex flex-col gap-2">
+        <button type="button" id="pdfSaveBtn" class="w-full rounded-xl bg-ink px-4 py-2.5 text-sm font-bold text-white transition hover:bg-birch">
+          <i class="ri-download-2-line"></i> 保存到本地
+        </button>
+        <button type="button" id="pdfOpenBtn" class="w-full rounded-xl border border-stone-300 bg-white px-4 py-2.5 text-sm font-bold text-stone-600 transition hover:border-birch hover:text-birch">
+          <i class="ri-external-link-line"></i> 新窗口打开后再保存
+        </button>
+        <button type="button" id="pdfCloseBtn" class="pt-1 text-xs font-bold text-stone-400 transition hover:text-stone-600">关闭</button>
+      </div>
+    </div>`;
+  document.body.appendChild(el);
+
+  const close = () => {
+    el.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 30000);
+  };
+  el.querySelector('#pdfSaveBtn').addEventListener('click', () => {
+    saveBlob(blob, filename);
+    toast('已开始下载 PDF');
+  });
+  el.querySelector('#pdfOpenBtn').addEventListener('click', () => {
+    const w = window.open(url, '_blank');
+    if (!w) toast('浏览器拦截了新窗口，请允许弹窗后重试');
+  });
+  el.querySelector('#pdfCloseBtn').addEventListener('click', close);
+  el.addEventListener('click', e => { if (e.target === el) close(); });
+}
+
+/** 打印：嵌在预览 iframe 里直接 print() 常被拦截，改为新标签页打开后自动唤起 */
+function openPrint() {
+  if (window.self !== window.top) {
+    const url = new URL(location.href);
+    url.searchParams.set('print', '1');
+    const w = window.open(url.toString(), '_blank');
+    if (!w) {
+      toast('浏览器拦截了新窗口，请改用「下载 PDF」');
+      return false;
+    }
+    return true;
+  }
+  try {
+    window.print();
+    return true;
+  } catch (e) {
+    toast('当前环境无法调用打印，请改用「下载 PDF」');
+    return false;
+  }
+}
+
+// ---------------------------------------------------------------
 // 组装
 // ---------------------------------------------------------------
 export function buildDoc(mode = 'full') {
@@ -304,11 +402,37 @@ export function initPlanDoc() {
   }));
   paintMode();
 
+  const pdfBtn = document.getElementById('pdfBtn');
+  if (pdfBtn) {
+    pdfBtn.addEventListener('click', async () => {
+      if (pdfBtn.dataset.busy === '1') return;
+      pdfBtn.dataset.busy = '1';
+      const original = pdfBtn.innerHTML;
+      pdfBtn.disabled = true;
+      pdfBtn.className = 'inline-flex cursor-not-allowed items-center gap-1.5 rounded-xl bg-ink px-4 py-2 text-sm font-bold text-white opacity-60 shadow transition';
+      pdfBtn.innerHTML = '<i class="ri-loader-4-line animate-spin"></i>生成中…';
+      showOverlay('准备中…');
+      const filename = pdfName(mode);
+      try {
+        const { pages, blob } = await exportPdf(docEl, filename, txt => showOverlay(txt));
+        hideOverlay();
+        saveBlob(blob, filename);        // 先替用户自动下载一次
+        showDoneDialog(pages, blob, filename);
+      } catch (e) {
+        hideOverlay();
+        toast(`${(e && e.message) || 'PDF 生成失败'}；可改用「打印」在打印窗口另存为 PDF`);
+      } finally {
+        pdfBtn.dataset.busy = '';
+        pdfBtn.disabled = false;
+        pdfBtn.className = 'inline-flex items-center gap-1.5 rounded-xl bg-ink px-4 py-2 text-sm font-bold text-white shadow transition hover:bg-birch';
+        pdfBtn.innerHTML = original;
+      }
+    });
+  }
+
   const printBtn = document.getElementById('printBtn');
   if (printBtn) {
-    printBtn.addEventListener('click', () => {
-      window.print();
-    });
+    printBtn.addEventListener('click', () => { openPrint(); });
   }
 
   const copyBtn = document.getElementById('copyAll');
@@ -328,6 +452,11 @@ export function initPlanDoc() {
   }
 
   render();
+
+  /* 从预览 iframe 里点「打印」时，会在新标签页带 ?print=1 打开本页，这里自动唤起打印窗口 */
+  if (new URLSearchParams(location.search).get('print') === '1' && window.self === window.top) {
+    setTimeout(() => { try { window.print(); } catch (e) { /* 环境不支持则忽略 */ } }, 900);
+  }
 }
 
 if (document.readyState === 'loading') {
