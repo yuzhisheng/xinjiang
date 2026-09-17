@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>纯文字版行程（一键复制）· 北疆金秋 10 日自驾</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink: '#1c1917',
+        birch: '#c8a04a',
+        pine: '#2f5d50'
+      },
+      fontFamily: {
+        sans: ['"PingFang SC"', '"Microsoft YaHei"', 'system-ui', 'sans-serif']
+      }
+    }
+  }
+}
+</script>
+<style>
+  body { background-color: #faf7f2; }
+  .plain-body {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "PingFang SC", "Microsoft YaHei", monospace;
+    white-space: pre-wrap;
+    word-break: break-word;
+    line-height: 1.9;
+    letter-spacing: .01em;
+  }
+  .plain-body::-webkit-scrollbar { width: 8px; height: 8px; }
+  .plain-body::-webkit-scrollbar-thumb { background: rgba(28,25,23,.18); border-radius: 8px; }
+</style>
+</head>
+<body class="font-sans text-ink antialiased">
+
+<header class="sticky top-0 z-50 border-b border-black/5 bg-white/90 backdrop-blur">
+  <div class="mx-auto flex max-w-[1100px] flex-wrap items-center gap-x-3 gap-y-2 px-4 py-3 lg:px-8">
+    <a href="./index.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-stone-500 transition hover:text-birch">
+      <i class="ri-arrow-left-line"></i>完整攻略
+    </a>
+    <span class="hidden h-5 w-px bg-stone-200 sm:block"></span>
+    <div class="flex min-w-0 items-center gap-2">
+      <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-birch text-white shadow"><i class="ri-file-text-line text-lg"></i></span>
+      <div class="min-w-0 leading-tight">
+        <p class="truncate text-sm font-black">纯文字版行程 · 复制即用</p>
+        <p id="plainStat" class="text-[11px] text-stone-400">生成中…</p>
+      </div>
+    </div>
+    <div class="ml-auto flex flex-wrap items-center gap-2">
+      <div class="flex items-center gap-0.5 rounded-xl border border-stone-200 bg-stone-50 p-1">
+        <button type="button" data-mode="full">完整版</button>
+        <button type="button" data-mode="brief">精简版</button>
+      </div>
+      <button type="button" id="fontMinus" class="grid h-9 w-9 place-items-center rounded-xl border border-stone-300 bg-white text-xs font-black text-stone-500 transition hover:border-birch hover:text-birch">A-</button>
+      <button type="button" id="fontPlus" class="grid h-9 w-9 place-items-center rounded-xl border border-stone-300 bg-white text-sm font-black text-stone-500 transition hover:border-birch hover:text-birch">A+</button>
+      <button type="button" id="copyAll" class="inline-flex items-center gap-1.5 rounded-xl bg-birch px-4 py-2 text-sm font-bold text-white shadow transition hover:bg-amber-600">
+        <i class="ri-file-copy-line"></i>复制全文
+      </button>
+      <button type="button" id="download" class="inline-flex items-center gap-1.5 rounded-xl border border-stone-300 bg-white px-4 py-2 text-sm font-bold text-stone-600 transition hover:border-birch hover:text-birch">
+        <i class="ri-download-2-line"></i>下载 .txt
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="mx-auto max-w-[1100px] px-4 py-6 lg:px-8 lg:py-8">
+  <div class="mb-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 rounded-2xl border border-birch/25 bg-birch/10 px-4 py-3 text-xs leading-relaxed text-stone-600">
+    <span class="inline-flex items-center gap-1.5 font-black text-birch"><i class="ri-lightbulb-line text-base"></i>用法</span>
+    <span>点「复制全文」即可粘贴到微信 / 备忘录 / 邮件；也可「下载 .txt」存到手机离线看。</span>
+    <span class="text-stone-400">内容与完整攻略页同源，行程一改这里自动跟着变。</span>
+  </div>
+  <pre id="plainText" class="plain-body rounded-2xl border border-black/5 bg-white p-5 text-[13.5px] text-stone-700 shadow-sm lg:p-8">正在生成文字版行程…</pre>
+</main>
+
+<footer class="mx-auto max-w-[1100px] px-4 pb-10 pt-2 text-center lg:px-8">
+  <p class="text-xs leading-relaxed text-stone-400">门票、区间车与住宿价格为旺季参考值，出行前请以景区官方公告与预订平台实时价为准。</p>
+  <p class="mt-3">由 <a href="https://with.woa.com/" style="color: #8A2BE2;" target="_blank">With</a> 通过自然语言生成</p>
+</footer>
+
+<script>
+/* 入口模块加载兜底：网络或部署同步瞬时抖动时自动重试 3 次 */
+(function () {
+  var MAX_RETRY = 3;
+  var tries = 0;
+
+  function showTip() {
+    if (document.getElementById('bootTip')) return;
+    var box = document.createElement('div');
+    box.id = 'bootTip';
+    box.className = 'fixed inset-x-0 top-0 z-[999] flex justify-center p-3';
+    box.innerHTML =
+      '<div class="flex items-center gap-3 rounded-xl bg-ink px-4 py-2.5 text-sm font-semibold text-white shadow-2xl">' +
+        '<i class="ri-error-warning-line text-birch"></i>' +
+        '<span>页面脚本加载失败，请检查网络后重试</span>' +
+        '<button id="bootReload" class="rounded-lg bg-birch px-3 py-1.5 text-xs font-bold text-white">重新加载</button>' +
+      '</div>';
+    document.body.appendChild(box);
+    document.getElementById('bootReload').addEventListener('click', function () { location.reload(); });
+  }
+
+  function retry() {
+    if (tries >= MAX_RETRY) { showTip(); return; }
+    tries += 1;
+    setTimeout(function () {
+      import('./js/plaintext.js?retry=' + tries)
+        .then(function () { /* 重试成功 */ })
+        .catch(retry);
+    }, 600 * tries);
+  }
+
+  window.addEventListener('error', function (e) {
+    var t = e.target;
+    if (t && t.tagName === 'SCRIPT' && t.id === 'appEntry') retry();
+  }, true);
+})();
+</script>
+<script type="module" src="./js/plaintext.js" id="appEntry"></script>
+</body>
+</html>

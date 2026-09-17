@@ -40,25 +40,25 @@ export const MAP_STOPS = [
   {
     uid: 'kanas', day: 'D3-4', name: '喀纳斯', sub: '三湾 · 晨雾 · 湖边栈道 · 游船',
     lat: 48.691747, lng: 87.025975, type: 'star',
-    desc: '9/27 宿景区内云中歌（新村），9/28 出山宿贾登峪疆峪。D3 下午三湾、D4 清晨神仙湾晨雾 + 湖边栈道；观鱼台季节性关闭中（至 2027 春）。住景区内只买一进票，看雾不用赶首班车。',
+    desc: '9/27 宿景区内云中歌（新村），9/28 出山宿贾登峪疆峪。D3 傍晚三湾、D4 清晨神仙湾晨雾 + 湖边栈道，两日均备 2 个版本可切换（见当日卡片）；观鱼台季节性关闭中（至 2027 春）。住景区内只买一进票，看雾不用赶首班车。',
     stay: '云中歌(27·景区内) + 疆峪(28·贾登峪) · 已订', nights: 2
   },
   {
     uid: 'burjin', day: 'D5', name: '布尔津', sub: '五彩滩日落 · 河堤夜市',
     lat: 47.702615, lng: 86.875590, type: 'city',
-    desc: '出山缓冲日，仅 124km。傍晚五彩滩看日落，晚上河堤夜市烤冷水鱼，物价正常的最后补给点。',
+    desc: '出山缓冲日：默认 S232 直达 124km，另有「进白哈巴」与「铁贾公路过境」2 个版本可切换（见当日卡片）。傍晚五彩滩看日落，晚上河堤夜市烤冷水鱼。',
     stay: '布尔津县城酒店', nights: 1
   },
   {
     uid: 'ghost', day: 'D6', name: '世界魔鬼城', sub: '乌尔禾雅丹 · 玩毕转场克拉玛依',
     lat: 46.129675, lng: 85.746798, type: 'spot',
-    desc: '风蚀土林像外星球，坐小火车环游最省力。9/30 国庆前进景区人还不多；玩毕南下 101km 宿克拉玛依，替 10/1 减负。',
+    desc: '风蚀土林像外星球，坐小火车环游最省力。9/30 国庆前进景区人还不多；玩毕南下 100km 宿克拉玛依，替 10/1 减负。',
     stay: '—（当晚转场克拉玛依）', nights: 0
   },
   {
     uid: 'karamay', day: 'D6', name: '克拉玛依', sub: '夜宿市区 · 转场减负',
     lat: 45.5795, lng: 84.8890, type: 'city',
-    desc: '魔鬼城玩毕南下 101km 入住市区：酒店餐饮选择多，出门就能加满油。多这 101km，换 10/1 单日从约 550km 缩到 448km、8 点起床。',
+    desc: '魔鬼城玩毕南下 100km 入住市区：酒店餐饮选择多，出门就能加满油。多这 100km，换 10/1 单日从约 550km 缩到 448km、8 点起床。',
     stay: '克拉玛依市区酒店（9/30 晚）', nights: 1
   },
   {
@@ -90,8 +90,8 @@ export const MAP_LEGS = [
   },
   { uid: 'L3', day: 'D3', from: 'hemu', to: 'kanas', km: 66, hours: '约1h45m', note: '禾木 → 贾登峪停车换乘 · 山路弯多备晕车药', color: 'route' },
   { uid: 'L4', day: 'D5', from: 'kanas', to: 'burjin', km: 124, hours: '约2h05m', note: '出山 · 今晚五彩滩日落', color: 'route' },
-  { uid: 'L5', day: 'D6', from: 'burjin', to: 'ghost', km: 237, hours: '约3h04m', note: 'G217 + 奎阿高速 · 国庆前一天错峰', color: 'route' },
-  { uid: 'L5b', day: 'D6', from: 'ghost', to: 'karamay', km: 101, hours: '约1h50m', note: '傍晚转场 · 换 10/1 减负约 100km', color: 'route' },
+  { uid: 'L5', day: 'D6', from: 'burjin', to: 'ghost', km: 217, hours: '约3h09m', note: 'G217 南下 · 国庆前一天错峰', color: 'route' },
+  { uid: 'L5b', day: 'D6', from: 'ghost', to: 'karamay', km: 100, hours: '约1h53m', note: '傍晚转场 · 换 10/1 减负约 100km', color: 'route' },
   {
     uid: 'L6', day: 'D7', from: 'karamay', to: 'sailimu', km: 448, hours: '约5h',
     note: '奎阿高速 + 连霍高速西行 · 精河服务区午餐 · 国庆首日 8:45 出发', color: 'route',
@@ -111,7 +111,7 @@ export const MAP_LABELS = [
   { name: '云中歌民宿 · 27 宿', lat: 48.6947, lng: 87.0085 },
   { name: '潮克星空营地 · 10/1 宿', lat: 44.6425, lng: 81.3833 },
   { name: '乌伦古湖', lat: 47.050, lng: 87.350 },
-  { name: '果子沟大桥', lat: 44.420, lng: 81.020 }
+  { name: '果子沟大桥', lat: 44.474, lng: 81.147 }
 ];
 
 export const MAP_TYPE_STYLE = {
