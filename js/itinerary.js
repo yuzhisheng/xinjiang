@@ -122,9 +122,9 @@ function renderWakeOverview() {
       <div class="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h3 class="flex items-center gap-2 text-sm font-black text-stone-700"><i class="ri-alarm-line text-birch"></i> 起床时间总览 · 默认 8:00，不早起</h3>
-          <p class="mt-1 text-[11px] leading-relaxed text-stone-500">只有"要排队"或"看晨雾/日出"的早晨才提前：<span class="font-bold text-rose-600">红 = 为景色早起</span> · <span class="font-bold text-amber-600">橙 = 避堵早半小时</span> · <span class="font-bold text-emerald-600">绿 = 自然醒</span> · <span class="font-bold text-sky-600">蓝 = 航班规定</span></p>
+          <p class="mt-1 text-[11px] leading-relaxed text-stone-500">只有"要排队"或"看晨雾/日出"的早晨才提前：<span class="font-bold text-rose-600">红 = 为景色早起</span> · <span class="font-bold text-emerald-600">绿 = 自然醒</span> · <span class="font-bold text-sky-600">蓝 = 航班规定</span></p>
         </div>
-        <span class="rounded-lg bg-stone-100 px-3 py-1.5 text-[11px] font-bold text-stone-600">10 个早晨：5 天 8:00 及以后起 · 3 天为景色早起</span>
+        <span class="rounded-lg bg-stone-100 px-3 py-1.5 text-[11px] font-bold text-stone-600">10 个早晨：6 天 8:00 及以后起 · 3 天为景色早起</span>
       </div>
       <div class="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">${chips}</div>
     </div>`;
